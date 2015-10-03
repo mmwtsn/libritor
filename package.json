@@ -24,10 +24,13 @@
     "pretest": "standard",
     "test": "mocha"
   },
-  "dependencies": {},
+  "dependencies": {
+    "github": "^0.2.4"
+  },
   "devDependencies": {
     "babel": "^5.8.23",
     "mocha": "^2.2.5",
+    "nock": "^2.13.0",
     "standard": "^5.1.0"
   }
 }
