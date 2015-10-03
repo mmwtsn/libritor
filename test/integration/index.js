@@ -20,7 +20,7 @@ describe('repos', () => {
     index.repos('attn', (err, data) => {
       if (err) throw new Error(err)
 
-      assert.deepEqual(data, reply)
+      assert.deepEqual(data, ['a', 'b'])
 
       done()
     })

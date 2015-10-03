@@ -9,7 +9,7 @@ export default {
    *
    * @param {string} org - Name of the organization.
    * @param {function} callback - Callback following the err, data pattern.
-   * @returns {string[]}
+   * @returns {string[]} List of repository names.
    * @public
    */
   repos (org, callback) {
@@ -18,7 +18,9 @@ export default {
     github.repos.getFromOrg({ org }, (err, data) => {
       if (err) return callback(err)
 
-      return callback(null, data)
+      const repos = JSON.parse(data).map(repo => repo.name)
+
+      return callback(null, repos)
     })
   }
 }
