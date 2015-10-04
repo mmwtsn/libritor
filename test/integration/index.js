@@ -12,12 +12,31 @@ nock('https://api.github.com')
     { name: 'b', date: 20150102, thing: true }
   ]))
 
+nock('https://api.github.com')
+  .get('/repos/attn/repo/contents/README.md.raw')
+  .reply(200, JSON.stringify({
+    name: 'file.js',
+    content: '...'
+  }))
+
 describe('repos', () => {
   it('returns an array of repository names', done => {
     index.repos('attn', (err, data) => {
       if (err) throw new Error(err)
 
       assert.deepEqual(data, ['a', 'b'])
+
+      done()
+    })
+  })
+})
+
+describe('contents', () => {
+  it('returns a file\'s content', done => {
+    index.contents('attn', 'repo', 'README.md', (err, data) => {
+      if (err) throw new Error(err)
+
+      assert.strictEqual(data, '...')
 
       done()
     })
