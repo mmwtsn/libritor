@@ -4,7 +4,6 @@ import assert from 'assert'
 import nock from 'nock'
 import index from '../../src'
 
-// Prevent outbound HTTP requests
 nock('https://api.github.com')
   .get('/orgs/attn/repos')
   .reply(200, JSON.stringify([
