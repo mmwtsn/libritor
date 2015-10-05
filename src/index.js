@@ -52,5 +52,10 @@ export default {
    * @class Status
    * @classdesc Holds the status state of a GitHub project.
    */
-  Status: class Status {}
+  Status: class Status {
+    constructor (module, version) {
+      this.module = module
+      this.version = version
+    }
+  }
 }

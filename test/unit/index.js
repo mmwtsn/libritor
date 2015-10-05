@@ -12,4 +12,24 @@ describe('Status', () => {
 
     done()
   })
+
+  describe('#module()', () => {
+    it('gets the set module value', done => {
+      const status = new index.Status('express', '4.0.0')
+
+      assert.strictEqual(status.module, 'express')
+
+      done()
+    })
+  })
+
+  describe('#version()', () => {
+    it('gets the set version value', done => {
+      const status = new index.Status('express', '4.0.0')
+
+      assert.strictEqual(status.version, '4.0.0')
+
+      done()
+    })
+  })
 })
