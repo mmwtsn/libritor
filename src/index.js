@@ -44,5 +44,13 @@ export default {
 
       return callback(null, content)
     })
-  }
+  },
+
+  /**
+   * Status class.
+   *
+   * @class Status
+   * @classdesc Holds the status state of a GitHub project.
+   */
+  Status: class Status {}
 }
