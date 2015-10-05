@@ -13,33 +13,20 @@ describe('Status', () => {
     done()
   })
 
-  describe('#module()', () => {
-    it('gets the set module value', done => {
-      const status = new index.Status('express', '4.0.0', 'generator-npm')
+  const params = ['standard', '5.0.0', 'generator-npm']
+  const getters = ['module', 'version', 'repo']
 
-      assert.strictEqual(status.module, 'express')
+  params.forEach((param, i)=> {
+    let getter = getters[i]
 
-      done()
-    })
-  })
+    describe(`#${getter}()`, () => {
+      it(`gets the ${getter} value`, done => {
+        let status = new index.Status(...params)
 
-  describe('#version()', () => {
-    it('gets the set version value', done => {
-      const status = new index.Status('express', '4.0.0', 'generator-npm')
+        assert.strictEqual(status[getter], param)
 
-      assert.strictEqual(status.version, '4.0.0')
-
-      done()
-    })
-  })
-
-  describe('#repo()', () => {
-    it('gets the set repo value', done => {
-      const status = new index.Status('express', '4.0.0', 'generator-npm')
-
-      assert.strictEqual(status.repo, 'generator-npm')
-
-      done()
+        done()
+      })
     })
   })
 })
