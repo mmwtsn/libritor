@@ -16,7 +16,7 @@ describe('Status', () => {
   const params = ['standard', '5.0.0', 'generator-npm']
   const getters = ['module', 'version', 'repo']
 
-  params.forEach((param, i)=> {
+  params.forEach((param, i) => {
     let getter = getters[i]
 
     describe(`#${getter}()`, () => {
