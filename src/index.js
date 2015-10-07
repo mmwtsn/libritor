@@ -1,6 +1,4 @@
-/**
- * Module dependencies.
- */
+// Module dependencies
 import GitHub from 'github'
 
 export default {
