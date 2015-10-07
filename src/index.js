@@ -1,6 +1,9 @@
 // Module dependencies
 import GitHub from 'github'
 
+// Instantiate GitHub class
+const github = new GitHub({ version: '3.0.0' })
+
 export default {
   /**
    * Gets all repositories from an organization asynchronously.
@@ -11,8 +14,6 @@ export default {
    * @public
    */
   repos (org, callback) {
-    const github = new GitHub({ version: '3.0.0' })
-
     github.repos.getFromOrg({ org }, (err, data) => {
       if (err) return callback(err)
 
@@ -32,7 +33,6 @@ export default {
    * @returns {string}
    */
   contents (org, repo, file, callback) {
-    const github = new GitHub({ version: '3.0.0' })
     const path = `${file}.raw`
 
     github.repos.getContent({ user: org, repo, path }, (err, data) => {
