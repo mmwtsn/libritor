@@ -12,7 +12,7 @@ nock('https://api.github.com')
   ]))
 
 nock('https://api.github.com')
-  .get('/repos/attn/repo/contents/README.md.raw')
+  .get('/repos/attn/repo/contents/README.md')
   .reply(200, JSON.stringify({
     name: 'file.js',
     content: '...'

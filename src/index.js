@@ -31,9 +31,7 @@ export function repos (org, callback) {
  * @param {function} callback - Callback following the err, data pattern.
  * @returns {string}
  */
-export function contents (org, repo, file, callback) {
-  const path = `${file}.raw`
-
+export function contents (org, repo, path, callback) {
   github.repos.getContent({ user: org, repo, path }, (err, data) => {
     if (err) return callback(err)
 
