@@ -2,7 +2,7 @@
 
 import assert from 'assert'
 import nock from 'nock'
-import index from '../../src'
+import {repos, contents} from '../../src'
 
 nock('https://api.github.com')
   .get('/orgs/attn/repos')
@@ -20,7 +20,7 @@ nock('https://api.github.com')
 
 describe('repos', () => {
   it('returns an array of repository names', done => {
-    index.repos('attn', (err, data) => {
+    repos('attn', (err, data) => {
       if (err) throw new Error(err)
 
       assert.deepEqual(data, ['a', 'b'])
@@ -32,7 +32,7 @@ describe('repos', () => {
 
 describe('contents', () => {
   it('returns a file\'s content', done => {
-    index.contents('attn', 'repo', 'README.md', (err, data) => {
+    contents('attn', 'repo', 'README.md', (err, data) => {
       if (err) throw new Error(err)
 
       assert.strictEqual(data, '...')

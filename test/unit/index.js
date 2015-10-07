@@ -1,14 +1,14 @@
 /* global describe, it */
 
 import assert from 'assert'
-import index from '../../src'
+import {Status} from '../../src'
 
 describe('Status', () => {
   it('is a class', done => {
-    const status = new index.Status()
+    const status = new Status()
 
-    assert.strictEqual(typeof index.Status, 'function')
-    assert.strictEqual(status.constructor, index.Status)
+    assert.strictEqual(typeof Status, 'function')
+    assert.strictEqual(status.constructor, Status)
 
     done()
   })
@@ -21,7 +21,7 @@ describe('Status', () => {
 
     describe(`#${getter}()`, () => {
       it(`gets the ${getter} value`, done => {
-        let status = new index.Status(...params)
+        let status = new Status(...params)
 
         assert.strictEqual(status[getter], param)
 
