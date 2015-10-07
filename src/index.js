@@ -51,9 +51,15 @@ export default {
    * @classdesc Holds the status state of a GitHub project.
    */
   Status: class Status {
-    constructor (module, version, repo) {
-      this.module = module
-      this.version = version
+    /**
+     * Constructs an instance of Status.
+     *
+     * @param {string} owner - GitHub username of the repository owner.
+     * @param {string} repo - Name of the repository on GitHub.
+     * @constructs Status
+     */
+    constructor (owner, repo) {
+      this.owner = owner
       this.repo = repo
     }
   }
