@@ -1,7 +1,5 @@
-/* global describe, it */
-
-import assert from 'assert'
 import nock from 'nock'
+import test from 'tape'
 import {repos, contents} from '../../src'
 
 nock('https://api.github.com')
@@ -18,26 +16,22 @@ nock('https://api.github.com')
     content: '...'
   }))
 
-describe('repos', () => {
-  it('returns an array of repository names', done => {
-    repos('attn', (err, data) => {
-      if (err) throw new Error(err)
+test('repos', t => {
+  repos('attn', (err, data) => {
+    if (err) throw new Error(err)
 
-      assert.deepEqual(data, ['a', 'b'])
+    t.same(data, ['a', 'b'], 'returns an array of repository names')
 
-      done()
-    })
+    t.end()
   })
 })
 
-describe('contents', () => {
-  it('returns a file\'s content', done => {
-    contents('attn', 'repo', 'README.md', (err, data) => {
-      if (err) throw new Error(err)
+test('contents', t => {
+  contents('attn', 'repo', 'README.md', (err, data) => {
+    if (err) throw new Error(err)
 
-      assert.strictEqual(data, '...')
+    t.equal(data, '...', 'returns a file\'s content')
 
-      done()
-    })
+    t.end()
   })
 })

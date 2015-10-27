@@ -1,32 +1,20 @@
-/* global describe, it */
-
-import assert from 'assert'
+import test from 'tape'
 import {Status} from '../../src'
 
-describe('Status', () => {
-  it('is a class', done => {
-    const status = new Status()
-
-    assert.strictEqual(typeof Status, 'function')
-    assert.strictEqual(status.constructor, Status)
-
-    done()
-  })
-
+test('Status', t => {
+  const status = new Status()
   const params = ['attn', 'generator-npm']
   const getters = ['owner', 'repo']
 
+  t.equal(typeof Status, 'function', 'is a function')
+  t.equal(status.constructor, Status, 'constructor is Status')
+
   params.forEach((param, i) => {
     let getter = getters[i]
+    let _status = new Status(...params)
 
-    describe(`#${getter}()`, () => {
-      it(`gets the ${getter} value`, done => {
-        let status = new Status(...params)
-
-        assert.strictEqual(status[getter], param)
-
-        done()
-      })
-    })
+    t.equal(_status[getter], param, `#${getter}() gets the ${getter} value`)
   })
+
+  t.end()
 })
