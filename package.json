@@ -22,13 +22,14 @@
   "scripts": {
     "prepublish": "babel src/index.js --out-file index.js",
     "pretest": "standard",
-    "test": "mocha"
+    "test": "babel-tape-runner test/**/*.js | tap-spec"
   },
   "dependencies": {
     "github": "^0.2.4"
   },
   "devDependencies": {
     "babel": "^5.8.23",
+    "babel-tape-runner": "^1.2.0",
     "nock": "^2.13.0",
     "standard": "^5.1.0",
     "tap-spec": "^4.1.0",
