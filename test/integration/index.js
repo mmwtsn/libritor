@@ -1,13 +1,13 @@
+import fs from 'fs'
 import nock from 'nock'
 import test from 'tape'
 import {repos, contents} from '../../src'
 
+const repos = fs.readFileSync('./test/fixtures/github-repos.json', 'utf8')
+
 nock('https://api.github.com')
-  .get('/orgs/attn/repos')
-  .reply(200, JSON.stringify([
-    { name: 'a', date: 20150101, thing: true },
-    { name: 'b', date: 20150102, thing: true }
-  ]))
+  .get('/orgs/github/repos')
+  .reply(200, repos)
 
 nock('https://api.github.com')
   .get('/repos/attn/repo/contents/README.md')
@@ -17,10 +17,19 @@ nock('https://api.github.com')
   }))
 
 test('repos', t => {
-  repos('attn', (err, data) => {
+  repos('github', (err, data) => {
     if (err) throw new Error(err)
 
-    t.same(data, ['a', 'b'], 'returns an array of repository names')
+    const repos = [
+      'version_sorter', 'markup', 'hub', 'github-services', 'rails',
+      'gitignore', 'dmca', 'pong', 'email_reply_parser', 'developer.github.com',
+      'linguist', 'testrepo', 'node-statsd', 'maven-plugins', 'statsd-ruby',
+      'grit', 'hubot', 'hubot-scripts', 'GitPad', 'gemoji', 'janky', 'expecta',
+      'twui', 'tainted_hash', 'GHKeyBrowser', 'msysgit', 'ernicorn',
+      'game-off-2012', 'Rebel', 'specta'
+    ]
+
+    t.same(data, repos, 'returns an array of repository names')
 
     t.end()
   })
