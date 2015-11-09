@@ -7,14 +7,14 @@ const reposJSON = fs.readFileSync('./test/fixtures/github-repos.json', 'utf8')
 
 nock('https://api.github.com')
   .get('/orgs/github/repos')
-  .reply(200, reposJSON)
+  .reply(200, JSON.parse(reposJSON))
 
 nock('https://api.github.com')
   .get('/repos/attn/repo/contents/README.md')
-  .reply(200, JSON.stringify({
+  .reply(200, {
     name: 'file.js',
     content: '...'
-  }))
+  })
 
 test('repos', t => {
   repos('github', (err, data) => {
