@@ -16,9 +16,7 @@ export function repos (org, callback) {
   github.repos.getFromOrg({ org }, (err, data) => {
     if (err) return callback(err)
 
-    const repos = data.map(repo => repo.name)
-
-    return callback(null, repos)
+    return callback(null, data.map(repo => repo.name))
   })
 }
 
@@ -35,9 +33,7 @@ export function contents (org, repo, path, callback) {
   github.repos.getContent({ user: org, repo, path }, (err, data) => {
     if (err) return callback(err)
 
-    const content = data.content
-
-    return callback(null, content)
+    return callback(null, data.content)
   })
 }
 
