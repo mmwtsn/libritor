@@ -3,11 +3,11 @@ import nock from 'nock'
 import test from 'tape'
 import {repos, contents} from '../../src'
 
-const repos = fs.readFileSync('./test/fixtures/github-repos.json', 'utf8')
+const reposJSON = fs.readFileSync('./test/fixtures/github-repos.json', 'utf8')
 
 nock('https://api.github.com')
   .get('/orgs/github/repos')
-  .reply(200, repos)
+  .reply(200, reposJSON)
 
 nock('https://api.github.com')
   .get('/repos/attn/repo/contents/README.md')
